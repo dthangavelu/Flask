@@ -1,0 +1,48 @@
+<html>
+<head>
+  <title>Friends</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">-->  
+	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body> 
+	<div class="container">
+	  <h2>Friends</h2>  
+	  <table class="table table-striped">
+		<thead>
+		  <tr>
+			<th>Firstname</th>
+			<th>Lastname</th>
+			<th>Occupation</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for friend in all_friends: %}
+				<tr>
+					<td>{{ friend['first_name'] }}</td>
+					<td>{{ friend['last_name'] }}</td>
+					<td>{{ friend['occupation'] }}</td>
+				</tr>
+			{% endfor %}      
+		</tbody>
+	  </table>
+	</div>
+    <div class="add_friend">
+		<h2>Add a Friend</h2>
+		<form action='/friends' method='POST'>
+			<label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+			<label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+			<label for="occupation">Occupation:<input type="text" name="occupation" id="occupation"></label>
+			<input type="submit" value="Add">
+		</form>
+	</div>
+</body>
+</html>

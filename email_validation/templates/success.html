@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Friends</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body> 
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{message}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+	<div class="container">
+	  <h2>The email address you entered {{ entered_email }} is a valid email. Thank you!</h2>
+	  <table class="table table-striped">
+		<thead>
+		  <tr>
+			<th>Emails</th>
+			<th>Last Accessed at</th>			
+		  </tr>
+		</thead>
+		<tbody>
+			{% for email in all_emails: %}
+				<tr>
+					<td>{{ email['email'] }}</td>
+					<td>{{ email['updated_at'] }}</td>					
+				</tr>
+			{% endfor %}      
+		</tbody>
+	  </table>
+	</div>  
+	<form action='/'>
+		<button type="submit">Add Email</button>
+	</form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title>Emails</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+<body> 
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{message}}</p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+    <div class="add_friend">
+		<h2>Email</h2>
+		<form action='/emails' method='post'>
+			<label for="email">Email <input type="text" name="email" id="email"></label>			
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</body>
+</html>
